@@ -7,23 +7,55 @@ public class TraditionalThreadCommunication {
 
     public static void main(String[] args) {
 
+        final Business Business = new Business();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                synchronized (TraditionalThreadCommunication.class) {
-                    for (int i = 0; i < 50; i++) {
-                        for (int j = 0; j < 10; j++) {
-                            System.out.println("sub thread " + j + ", loop" + i);
-                        }
-                    }
+                for (int i = 0; i < 50; i++) {
+                    Business.sub(i);
                 }
             }
         }).start();
-        for (int j = 0; j < 10; j++) {
-            synchronized (TraditionalThreadCommunication.class) {
-                System.out.println("main thread " + j);
+        for (int i = 0; i < 50; i++) {
+            Business.main(i);
+        }
+
+    }
+
+}
+
+class Business{
+
+    boolean shouldSub = true;
+
+    public synchronized void sub(int i){
+        while(!shouldSub){
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+        for (int j = 0; j < 10; j++) {
+            System.out.println("sub thread " + j + ", loop" + i);
+        }
+        shouldSub = false;
+        this.notify();
+    }
+
+    public synchronized void main(int i){
+        while(shouldSub){
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        for (int j = 0; j < 10; j++) {
+            System.out.println("main thread " + j + ", loop" + i);
+        }
+        shouldSub = true;
+        this.notify();
     }
 
 }
