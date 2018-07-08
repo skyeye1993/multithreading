@@ -8,17 +8,17 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class LockTest {
     public static void main(String[] args) {
-        new TraditionalThreadSynchronized().init();
+        new LockTest().init();
     }
 
     void init(){
-        TraditionalThreadSynchronized.Outputer outputer = new TraditionalThreadSynchronized.Outputer();
+        LockTest.Outputer outputer = new LockTest.Outputer();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -32,7 +32,7 @@ public class LockTest {
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -51,7 +51,7 @@ public class LockTest {
                     System.out.print(name.charAt(i));
                 }
             } catch (Exception e) {
-                lock.unlock();
+                //lock.unlock();
             }
             System.out.println();
             lock.unlock();
