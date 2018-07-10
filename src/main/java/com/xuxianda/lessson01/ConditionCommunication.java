@@ -26,43 +26,50 @@ public class ConditionCommunication {
 
     }
 
-    static class Business{
+    static class Business {
 
         boolean shouldSub = true;
         Lock lock = new ReentrantLock();
         Condition condition = lock.newCondition();
-        public void sub(int i){
+
+        public void sub(int i) {
             lock.lock();
-            while(!shouldSub){
-                try {
-                    condition.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            try {
+                while (!shouldSub) {
+                    try {
+                        condition.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
+                for (int j = 0; j < 10; j++) {
+                    System.out.println("sub thread " + j + ", loop" + i);
+                }
+                shouldSub = false;
+                condition.signal();
+            } finally {
+                lock.unlock();
             }
-            for (int j = 0; j < 10; j++) {
-                System.out.println("sub thread " + j + ", loop" + i);
-            }
-            shouldSub = false;
-            condition.signal();
-            lock.unlock();
         }
 
-        public void main(int i){
+        public void main(int i) {
             lock.lock();
-            while(shouldSub){
-                try {
-                    condition.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            try {
+                while (shouldSub) {
+                    try {
+                        condition.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
+                for (int j = 0; j < 10; j++) {
+                    System.out.println("main thread " + j + ", loop" + i);
+                }
+                shouldSub = true;
+                condition.signal();
+            } finally {
+                lock.unlock();
             }
-            for (int j = 0; j < 10; j++) {
-                System.out.println("main thread " + j + ", loop" + i);
-            }
-            shouldSub = true;
-            condition.signal();
-            lock.unlock();
         }
 
     }
