@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by Xianda Xu on 2018/7/10.
+ * 倒计时计数器
  */
 public class CountdownLatchTest {
     public static void main(String[] args) {
