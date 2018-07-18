@@ -1,17 +1,17 @@
 package com.xuxianda.lessson01;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by Xianda Xu on 2018/7/15.
  */
 public class CollectionModifyExceptionTest {
     public static void main(String[] args) {
-        Collection users = //new CopyOnWriteArrayList();
+        Collection users = new CopyOnWriteArrayList();
 
-        new ArrayList();
+        //new ArrayList();
         users.add(new User("张三",28));
         users.add(new User("李四",25));
         users.add(new User("王五",31));
