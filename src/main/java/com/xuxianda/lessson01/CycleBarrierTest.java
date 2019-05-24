@@ -11,10 +11,9 @@ public class CycleBarrierTest {
 
     public static void main(String[] args) {
         ExecutorService threadPool = Executors.newFixedThreadPool(10);
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
+        final CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
         for (int i = 0 ;i < 3 ;i ++){
             threadPool.execute(new Runnable() {
-                @Override
                 public void run() {
                     try {
                         Thread.sleep((long)(Math.random()*10000));

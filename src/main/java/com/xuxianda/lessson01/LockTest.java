@@ -12,9 +12,8 @@ public class LockTest {
     }
 
     void init(){
-        LockTest.Outputer outputer = new LockTest.Outputer();
+        final LockTest.Outputer outputer = new LockTest.Outputer();
         new Thread(new Runnable() {
-            @Override
             public void run() {
                 while (true) {
                     try {
@@ -28,7 +27,6 @@ public class LockTest {
         }).start();
 
         new Thread(new Runnable() {
-            @Override
             public void run() {
                 while (true) {
                     try {

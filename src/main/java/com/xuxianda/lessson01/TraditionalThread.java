@@ -7,7 +7,6 @@ public class TraditionalThread {
 
     public static void main(String[] args) {
         Thread thread1 = new Thread(){
-            @Override
             public void run() {
                 while (true) {
                     try {
@@ -23,7 +22,6 @@ public class TraditionalThread {
         thread1.start();
 
         Thread thread2 = new Thread(new Runnable() {
-            @Override
             public void run() {
                 while (true) {
                     try {
@@ -38,7 +36,6 @@ public class TraditionalThread {
         thread2.start();
 
         Thread thread3 = new Thread(new Runnable() {
-            @Override
             public void run() {
                 while (true) {
                     try {

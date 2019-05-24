@@ -11,7 +11,6 @@ public class CallableAndFuture {
     public static void main(String[] args) {
         ExecutorService threadPool = Executors.newSingleThreadExecutor();
         Future<String> future = threadPool.submit(new Callable<String>() {
-            @Override
             public String call() throws Exception {
                 return "name";
             }
@@ -28,7 +27,6 @@ public class CallableAndFuture {
         for (int i = 0 ;i < 10 ; i++){
             final int seq = i;
             completionService.submit(new Callable<Integer>() {
-                @Override
                 public Integer call() throws Exception {
                     Thread.sleep(new Random().nextInt(5000));
                     return seq;

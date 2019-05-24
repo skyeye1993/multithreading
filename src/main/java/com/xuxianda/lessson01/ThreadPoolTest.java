@@ -16,7 +16,6 @@ public class ThreadPoolTest {
         for (int i = 0; i < 10; i++){
             final int task = i;
             threadPool.execute(new Runnable() {
-                @Override
                 public void run() {
                     for (int j = 0 ; j<10;j++){
                         System.out.println(Thread.currentThread().getName()+" is looping of "+j+" for task "+task);
@@ -26,7 +25,6 @@ public class ThreadPoolTest {
         }
         //threadPool.shutdown();
         Executors.newScheduledThreadPool(3).schedule(new Runnable() {
-            @Override
             public void run() {
                 System.out.println("bombing");
             }

@@ -11,7 +11,6 @@ public class BlockingQueueCommunication {
 
         final ConditionCommunication.Business Business = new ConditionCommunication.Business();
         new Thread(new Runnable() {
-            @Override
             public void run() {
                 for (int i = 0; i < 50; i++) {
                     Business.sub(i);

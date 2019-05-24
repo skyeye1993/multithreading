@@ -14,7 +14,6 @@ public class ExchangerTest {
         ExecutorService threadPool = Executors.newFixedThreadPool(2);
 
         threadPool.execute(new Runnable() {
-            @Override
             public void run() {
                 try {
                     String data1 = "test1";
@@ -29,7 +28,6 @@ public class ExchangerTest {
         });
 
         threadPool.execute(new Runnable() {
-            @Override
             public void run() {
                 try {
                     String data2 = "test2";

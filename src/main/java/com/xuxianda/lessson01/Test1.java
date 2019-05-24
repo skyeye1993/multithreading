@@ -12,7 +12,6 @@ public class Test1 {
         final BlockingQueue<String> queue = new ArrayBlockingQueue<String>(1);
         for(int i=0;i<4;i++){
             new Thread(new Runnable(){
-                @Override
                 public void run() {
                     while(true){
                         try {

@@ -14,7 +14,6 @@ public class ThreeConditionCommunication {
         final Business Business = new Business();
 
         new Thread(new Runnable() {
-            @Override
             public void run() {
                 for (int i = 0; i < 50; i++) {
                     Business.sub2(i);
@@ -23,7 +22,6 @@ public class ThreeConditionCommunication {
         }).start();
 
         new Thread(new Runnable() {
-            @Override
             public void run() {
                 for (int i = 0; i < 50; i++) {
                     Business.sub3(i);

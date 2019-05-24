@@ -10,9 +10,8 @@ public class TraditionalThreadSynchronized {
     }
 
     void init(){
-        Outputer outputer = new Outputer();
+        final Outputer outputer = new Outputer();
         new Thread(new Runnable() {
-            @Override
             public void run() {
                 while (true) {
                     try {
@@ -26,7 +25,6 @@ public class TraditionalThreadSynchronized {
         }).start();
 
         new Thread(new Runnable() {
-            @Override
             public void run() {
                 while (true) {
                     try {

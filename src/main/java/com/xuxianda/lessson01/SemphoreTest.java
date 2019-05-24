@@ -9,11 +9,10 @@ import java.util.concurrent.Semaphore;
 public class SemphoreTest {
 
     public static void main(String[] args) {
-        Semaphore semaphore = new Semaphore(3);//同时最多只有3个线程启用
+        final Semaphore semaphore = new Semaphore(3);//同时最多只有3个线程启用
 
         for (int i = 0; i < 10; i++){
             new Thread(new Runnable() {
-                @Override
                 public void run() {
                     try {
                         semaphore.acquire();

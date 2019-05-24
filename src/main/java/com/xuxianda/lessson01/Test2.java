@@ -13,7 +13,6 @@ public class Test2 {
         final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<String>(1);
         for(int i=0;i<10;i++){
             new Thread(new Runnable(){
-                @Override
                 public void run() {
                     try {
                         semaphore.acquire();

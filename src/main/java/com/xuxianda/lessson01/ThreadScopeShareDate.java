@@ -15,7 +15,6 @@ public class ThreadScopeShareDate {
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
             new Thread(new Runnable() {
-                @Override
                 public void run() {
                     data = new Random().nextInt();
                     System.out.println(Thread.currentThread().getName() + " has put data :" + data);

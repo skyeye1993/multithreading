@@ -13,7 +13,6 @@ public class ConditionCommunication {
 
         final Business Business = new Business();
         new Thread(new Runnable() {
-            @Override
             public void run() {
                 for (int i = 0; i < 50; i++) {
                     Business.sub(i);
