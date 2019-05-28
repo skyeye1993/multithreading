@@ -4,7 +4,11 @@ package com.xuxianda.lesson02;
  * @Author: xuxianda
  * @Date: 2019/5/27 11:09
  * @Version 1.0
- * 一、volatile关键字：
+ * 一、volatile关键字：当多个线程操作共享数据时，可以保证内存中的数据可见。多个线程操作数据时，操作的是主内存中的数据，而不是缓存中的数据
+ *
+ * 注意：
+ * 1、volatile不具备互斥性
+ * 2、volatile不能保证变量的原子性
  */
 /**
  * 本质问题是修改了cpu高速缓存中的数据，却没有修改主内存中的数据
@@ -24,20 +28,19 @@ public class TestVolatile {
         ThreadDemo td = new ThreadDemo();
         new Thread(td).start();
         while(true){
-            synchronized (td){
+            /*synchronized (td){*/   //如果使用锁的话，线程会锁住这块代码，效率会比较低，推荐使用volatile
                 if(td.isFlag()){
                     System.out.println("------------------");
                     break;
                 }
-            }
-
+            /*}*/
         }
     }
 
 }
 
 class ThreadDemo implements Runnable {
-    private /*volatile*/ boolean flag = false;
+    private volatile boolean flag = false;
 
     public void run() {
         try {
